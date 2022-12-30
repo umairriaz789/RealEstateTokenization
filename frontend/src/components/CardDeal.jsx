@@ -1,24 +1,21 @@
-import { card } from "../assets";
+// import { card } from "../assets";
 import styles, { layout } from "../style";
 import Button from "./Button";
+import { FetchUSDT } from "./Dashboards/frontend/USDT/FetchUSDT";
+import { FetchBUSD } from "./Dashboards/frontend/USDC/FetchBUSD";
 
 const CardDeal = () => (
+  
   <section className={layout.section}>
     <div className={layout.sectionInfo}>
-      <h2 className={styles.heading2}>
-        Find a better card deal <br className="sm:block hidden" /> in few easy
-        steps.
-      </h2>
-      <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-        Arcu tortor, purus in mattis at sed integer faucibus. Aliquet quis
-        aliquet eget mauris tortor.ç Aliquet ultrices ac, ametau.
-      </p>
-
-      <Button styles={`mt-10`} />
+      {/* <h2 className={styles.heading2}>
+      Accepted Stable Coin<br className="sm:block hidden" /> Current Price
+      </h2> */}
+      <FetchBUSD/>
     </div>
 
     <div className={layout.sectionImg}>
-      <img loading="lazy" src={card} alt="billing" className="w-[100%] h-[100%]" />
+      <FetchUSDT/>
     </div>
   </section>
 );

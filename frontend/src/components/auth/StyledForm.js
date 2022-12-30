@@ -6,7 +6,7 @@ export const StyledForm = styled.form`
   margin: 2rem auto;
 
   h2 {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   button,
@@ -33,7 +33,7 @@ export const StyledForm = styled.form`
   }
 
   p {
-    font-size: 14px;
+    font-size: 20x;
     color: red;
   }
 `;

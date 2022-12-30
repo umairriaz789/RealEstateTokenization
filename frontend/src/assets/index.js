@@ -30,6 +30,9 @@ import tick2 from "./tick2.svg";
 import people01 from "./people01.png";
 import people02 from "./people02.png";
 import people03 from "./people03.png";
+import login from "./login.png";
+import meta from "./meta.png";
+import walet from "./walet.png";
 
 export {
   airbnb,
@@ -40,6 +43,7 @@ export {
   dropbox,
   logo,
   logos,
+  login,
   quotes,
   robot,
   send,
@@ -64,4 +68,6 @@ export {
   people01,
   people02,
   people03,
+  walet,
+  meta
 };

@@ -32,6 +32,14 @@ const Dashboard = () => {
           className={({ isActive }) =>
             isActive ? "link-active" : "link-inactive"
           }
+          to="/admin/contractowner"
+        >
+          <FaUsers /> Contract Owner
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link-active" : "link-inactive"
+          }
           to="/admin/orders"
         >
           <FaClipboard /> Orders
@@ -64,7 +72,8 @@ export default Dashboard;
 
 const StyledDashboard = styled.div`
   display: flex;
-  height: 100vh;
+  height: auto;
+  width: auto;
 `;
 
 const SideNav = styled.div`

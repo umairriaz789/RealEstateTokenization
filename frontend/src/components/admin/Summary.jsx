@@ -7,6 +7,7 @@ import { setHeaders, url } from "../../slices/api";
 import axios from "axios";
 import Transactions from "./summary-components/Transactions";
 import LifeTimeData from "./summary-components/LifeTimeData";
+import { AppointAdmin } from "./AppointAdmin";
 
 const Summary = () => {
   const [users, setUsers] = useState([]);
@@ -120,11 +121,24 @@ const Summary = () => {
             ))}
           </WidgetWrapper>
         </Overview>
+
+        <Overview className="mt-7">
+          <Title>
+            <h2>Overview</h2>
+            <p>Get $25 when, your friend invest...</p>
+          </Title>
+          {/* <WidgetWrapper>
+            {data?.map((data, index) => (
+              <Widget data={data} key={index} />
+            ))}
+          </WidgetWrapper> */}
+        </Overview>
         <Chart />
       </MainStats>
       <SideStats>
         <Transactions />
         <LifeTimeData />
+        <AppointAdmin/>
       </SideStats>
     </StyledSummary>
   );

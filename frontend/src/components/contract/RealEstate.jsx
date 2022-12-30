@@ -1,5 +1,138 @@
-export const CONTRACT_ADDRESS="0xBa4fB00E64be7618568F3E7f96F19aC63fABF70f"
+export const CONTRACT_ADDRESS="0xf15c829870a35C271629096B46bB238083244f04"
 export const CONTRACT_ABI=[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_EscrowsAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_VotingAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_PurchasePrice",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_ListingFee",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_ServicingFee",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_TokenPrice",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_BuySellingFee",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_InitialEscrow",
+				"type": "uint8"
+			}
+		],
+		"name": "AddPropInfo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "enum Escrow.TypeOfFund",
+				"name": "Type_token",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint256",
+				"name": "TokenQuant",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_price",
+				"type": "uint256"
+			}
+		],
+		"name": "Buyers",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_propertyTokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "CreateProperty",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "EndReSelling",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "GrantPropOwnerRole",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_discription",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "Start_time",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "End_Time",
+				"type": "uint256"
+			}
+		],
+		"name": "Proposals",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
@@ -9,50 +142,56 @@ export const CONTRACT_ABI=[
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "approved",
-				"type": "address"
-			},
-			{
-				"indexed": true,
+				"indexed": false,
 				"internalType": "uint256",
-				"name": "tokenId",
+				"name": "_qantToken",
 				"type": "uint256"
-			}
-		],
-		"name": "Approval",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
 			},
 			{
 				"indexed": false,
-				"internalType": "bool",
-				"name": "approved",
-				"type": "bool"
+				"internalType": "uint256",
+				"name": "_price",
+				"type": "uint256"
 			}
 		],
-		"name": "ApprovalForAll",
+		"name": "BuyTokens",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "grantRole",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "propOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_admin",
+				"type": "address"
+			}
+		],
+		"name": "LogAdmin",
 		"type": "event"
 	},
 	{
@@ -61,39 +200,191 @@ export const CONTRACT_ABI=[
 			{
 				"indexed": true,
 				"internalType": "address",
-				"name": "from",
+				"name": "previousOwner",
 				"type": "address"
 			},
 			{
 				"indexed": true,
 				"internalType": "address",
-				"name": "to",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_propertyadmin",
+				"type": "address"
+			}
+		],
+		"name": "PropertyAdmin",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "renounceRole",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "revokePoolOwnerRole",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "revokeRole",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			},
+			{
+				"indexed": true,
+				"internalType": "bytes32",
+				"name": "previousAdminRole",
+				"type": "bytes32"
+			},
+			{
+				"indexed": true,
+				"internalType": "bytes32",
+				"name": "newAdminRole",
+				"type": "bytes32"
+			}
+		],
+		"name": "RoleAdminChanged",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "account",
 				"type": "address"
 			},
 			{
 				"indexed": true,
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
 			}
 		],
-		"name": "Transfer",
+		"name": "RoleGranted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "RoleRevoked",
 		"type": "event"
 	},
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "_toeknQuant",
+				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "tokenId",
+				"name": "_price",
 				"type": "uint256"
 			}
 		],
-		"name": "approve",
+		"name": "Sellers",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "StartSell",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "StatrtResell",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -102,16 +393,91 @@ export const CONTRACT_ABI=[
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "owner",
+				"name": "_address",
 				"type": "address"
 			}
 		],
-		"name": "balanceOf",
+		"name": "Token_Transfer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "TransferOwner",
 		"outputs": [
 			{
+				"internalType": "bool",
+				"name": "success",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "INDEX",
 				"type": "uint256"
+			}
+		],
+		"name": "voting",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "enum Escrow.TypeOfFund",
+				"name": "Type_token",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_tokens",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "withdrawTokens",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "DEFAULT_ADMIN_ROLE",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
 			}
 		],
 		"stateMutability": "view",
@@ -119,26 +485,7 @@ export const CONTRACT_ABI=[
 	},
 	{
 		"inputs": [],
-		"name": "currentSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "getApproved",
+		"name": "EscrowsAccountant",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -153,16 +500,241 @@ export const CONTRACT_ABI=[
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "owner",
+				"name": "_propAddress",
 				"type": "address"
+			}
+		],
+		"name": "GetBuyers",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "buyerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "enum Escrow.TypeOfFund",
+						"name": "Type_of_Currency",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "NoPropertToken",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "SendingTokenCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ExpiryTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum Escrow.OrderStatus",
+						"name": "orderStatus",
+						"type": "uint8"
+					},
+					{
+						"internalType": "bool",
+						"name": "Fund_Released",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Escrow.BuyerInfo[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "GetCompletePropDetails",
+		"outputs": [
+			{
+				"components": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "propertyTokenAddress",
+								"type": "address"
+							}
+						],
+						"internalType": "struct IProp.PropertyModel",
+						"name": "prop",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "Escrows",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "VotingAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "PurchasePrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "TotalTokenHolders",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "ListingFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "ServicingFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "TokenPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "BuySellingFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Escrow",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "StartSell",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "Resell",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct IProp.PropertyInfo",
+						"name": "PropertyDetails",
+						"type": "tuple"
+					}
+				],
+				"internalType": "struct IProp.CompletePropertDetails",
+				"name": "propDetails",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
+			}
+		],
+		"name": "getRoleAdmin",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_propAddress",
+				"type": "address"
+			}
+		],
+		"name": "GetSeller",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "sellerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TokenQuantity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "PlateFormFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ExpiryTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum Escrow.OrderStatus",
+						"name": "orderStatus",
+						"type": "uint8"
+					},
+					{
+						"internalType": "bool",
+						"name": "Fund_Released",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Escrow.SelerInfo[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "role",
+				"type": "bytes32"
 			},
 			{
 				"internalType": "address",
-				"name": "operator",
+				"name": "account",
 				"type": "address"
 			}
 		],
-		"name": "isApprovedForAll",
+		"name": "hasRole",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -175,110 +747,92 @@ export const CONTRACT_ABI=[
 	},
 	{
 		"inputs": [],
-		"name": "mint",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"name": "isActive",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
 		"inputs": [],
-		"name": "name",
+		"name": "isResell",
 		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "ownerOf",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "_data",
-				"type": "bytes"
-			}
-		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
 			{
 				"internalType": "bool",
-				"name": "approved",
+				"name": "",
 				"type": "bool"
 			}
 		],
-		"name": "setApprovalForAll",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "Owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "PropertyContractAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "PT_Balances",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -302,31 +856,12 @@ export const CONTRACT_ABI=[
 	},
 	{
 		"inputs": [],
-		"name": "symbol",
+		"name": "TokenCount",
 		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenURI",
-		"outputs": [
-			{
-				"internalType": "string",
 				"name": "",
-				"type": "string"
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -336,23 +871,38 @@ export const CONTRACT_ABI=[
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "from",
+				"name": "_account",
 				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
+			}
+		],
+		"name": "USDC_Balance",
+		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "tokenId",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "transferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_account",
+				"type": "address"
+			}
+		],
+		"name": "USDT_Balance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	}
 ]

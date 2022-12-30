@@ -10,9 +10,11 @@ import personaldbReducer from "../slices/personalSlice";
 import  {personaldbApi}  from "../slices/personalApi";
 import propertiesdbReducer from "../slices/propertySlice";
 import {propertiesdbApi} from "../slices/propertyApi";
+import { adminReducers } from "../slices/adminEventSlice";
 
 const parentReducer = combineReducers({
     web3Connect : web3Reducer,
+    AdminAddress: adminReducers,
     products: productsReducer,
     users: UsersSlice,
     orders: ordersSlice,

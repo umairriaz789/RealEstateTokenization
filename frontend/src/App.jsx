@@ -40,7 +40,7 @@ import Product from "./components/Details/Product";
 import Order from "./components/Details/Order";
 import UserProfile from "./components/Details/UserProfile";
 import { ListedProperty } from './components/admin/ListedProperty';
-
+import {ContractOwner} from './components/admin/ContractOwner';
 
 const Home = lazy(() => import('./components/Home'));
 // const safeImport = (item: Promise<any>) => item.catch((e) => { console.error(e); window.location.reload(); });
@@ -81,34 +81,35 @@ const App = () => {
           <Route path='/register' element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/marketplace" element={<MarketPlace />} />
-          <Route path="/blog" element={<Blog />} /> 
+          <Route path="/blog" element={<Blog />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/order/:id" element={<Order />} />
           <Route path="/user/:id" element={<UserProfile />} />
           <Route path="/admin" element={<Dashboard />}>
             <Route path="summary" element={<Summary />} />
-            <Route path="products" element={<Products />}>
-              <Route index element={<ProductsList />} />
-              <Route path="create-product" element={<CreateProduct />} />
+            <Route path="contractowner" element={<ContractOwner />}/>
+              <Route path="products" element={<Products />}>
+                <Route index element={<ProductsList />} />
+                <Route path="create-product" element={<CreateProduct />} />
+              </Route>
+              <Route path="users" element={<Users />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="listedProperty" element={<ListedProperty />} />
             </Route>
-            <Route path="users" element={<Users />} />
-            <Route path="orders" element={<Orders />} />
-            <Route path="listedProperty" element={<ListedProperty />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-          <Route path="/account" element={<DashBoard />}>
-            <Route path="assertsOverview" element={<AssertsOverview />} />
-            <Route path="listproperty" element={<ListProperty />} />
-            <Route path="transections" element={<Transections />} />
-            <Route path="setting" element={<Setting />} />
-            <Route path="proposals" element={<Proposals />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/account" element={<DashBoard />}>
+              <Route path="assertsOverview" element={<AssertsOverview />} />
+              <Route path="listproperty" element={<ListProperty />} />
+              <Route path="transections" element={<Transections />} />
+              <Route path="setting" element={<Setting />} />
+              <Route path="proposals" element={<Proposals />} />
 
-            {/* For Property Form */}
+              {/* For Property Form */}
 
-            <Route path="/account/listproperty/step1" element={<Account />} />
-            <Route path="/account/listproperty/step2" element={<Details />} />
-            <Route path="/account/listproperty/step2/final" element={<Final />} />
-          </Route>
+              <Route path="/account/listproperty/step1" element={<Account />} />
+              <Route path="/account/listproperty/step2" element={<Details />} />
+              <Route path="/account/listproperty/step2/final" element={<Final />} />
+            </Route>
         </Routes>
       </BrowserRouter>
 

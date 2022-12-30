@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Widget from "../admin/summary-components/Widget";
 import { FaUsers, FaCreditCard, FaChartBar, FaClipboard } from "react-icons/fa";
-import Chart from "../admin/summary-components/Chart";
-import { useEffect, useState } from "react";
-import { setHeaders, url } from "../../slices/api";
-import axios from "axios";
+// import Chart from "../admin/summary-components/Chart";
+// import { useEffect, useState } from "react";
+// import { setHeaders, url } from "../../slices/api";
+// import axios from "axios";
 import AccountData from "./AccountData";
 import { Button } from "react-bootstrap";
 // import Transactions from "../admin/summary-components/Transactions";

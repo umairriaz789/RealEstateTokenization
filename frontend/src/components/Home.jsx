@@ -1,11 +1,5 @@
-import React, { Suspense, lazy } from 'react'
-// import Hero from './Hero';
+import React, { Suspense, lazy } from 'react';
 import styles from "../style";
-// import Footer from './Footer';
-// import Stats from './Stats';
-// import Business from './Business';
-// import Billing from './Billing';
-// import DesOne from './DesOne';
 
 const Hero = lazy(() => import('./Hero'));
 const Business = lazy(() => import('./Business'));
@@ -13,6 +7,8 @@ const Billing = lazy(() => import('./Billing'));
 const DesOne = lazy(() => import('./DesOne'));
 const Stats = lazy(() => import('./Stats'));
 const Footer = lazy(() => import('./Footer'));
+const Testimonials = lazy(() => import('./Testimonials'));
+const CardDeal = lazy(() => import('./CardDeal'));
 
 
 const Home = () => {
@@ -33,15 +29,21 @@ const Home = () => {
           <Suspense>
             <Stats />
           </Suspense>
-          {/* <Suspense>
+          <Suspense>
             <Business />
-          </Suspense> */}
-          {/* <Suspense>
+          </Suspense>
+          <Suspense>
             <DesOne />
-          </Suspense> */}
+          </Suspense>
           {/* <Suspense>
             <Billing />
           </Suspense> */}
+          <Suspense>
+            <CardDeal/>
+          </Suspense>
+          <Suspense>
+            <Testimonials />
+          </Suspense>
           <Suspense>
             <Footer />
           </Suspense>

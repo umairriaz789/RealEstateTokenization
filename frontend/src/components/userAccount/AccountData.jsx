@@ -2,46 +2,50 @@ import { Button } from "react-bootstrap";
 import styled from "styled-components";
 import { useAppSelector, useAppDispatch } from '../../reducer/store';
 import { useState, useEffect } from 'react';
-import { loadBlockchain } from '../../slices/web3ContractSlice';
+// import { loadBlockchain } from '../../slices/web3ContractSlice';
 
 const LifeTimeData = () => {
 
 
-    const [userbalance, setuserbalance] = useState();
+    // const [userbalance, setuserbalance] = useState();
+    // const [isConnected, setIsConnected] = useState(false);
 
     //LOAD BLOKCHAIN
-    const dispatch = useAppDispatch()
-    const { web3, contract, accounts, socketContract } = useAppSelector((state) => state.web3Connect);
+    // const dispatch = useAppDispatch()
+    // const { web3, contract, accounts, socketContract } = useAppSelector((state) => state.web3Connect);
 
 
-    const handleblockchain = () => {
-        dispatch(loadBlockchain());
-    };
+    // const handleblockchain = () => {
+    //     dispatch(loadBlockchain());
+    //     setIsConnected(true);
+    // };
 
-
-
+    // const onDisconnect = () => {
+    //     setIsConnected(false);
+    //   }
 
     // balance of contract
-    const balanceOf = async () => {
-        try {
-            let balance = await contract?.methods.balanceOf(accounts[0]).call()
-            setuserbalance(balance);
+    // const balanceOf = async () => {
+    //     try {
+    //         let balance = await contract?.methods.balanceOf(accounts[0]).call()
+    //         setuserbalance(balance);
 
-        } catch (error) {
-            console.log("error", error)
+    //     } catch (error) {
+    //         console.log("error", error)
 
-        }
-    }
+    //     }
+    // }
+
   // get accounts
-  const account = accounts[0];
+//   const account = accounts[0];
   
 
 
-    useEffect(() => {
-        if (contract) {
-          balanceOf();   
-        }
-      }, [contract])
+    // useEffect(() => {
+    //     if (contract) {
+    //       balanceOf();   
+    //     }
+    //   }, [contract])
 
 
 
@@ -76,7 +80,7 @@ const LifeTimeData = () => {
                     <Main>
                         <h3>Account Details
                             <span>
-                                <Button className="ml-14  btn-warning text-white " onClick={() => handleblockchain()}>Connect to wallet</Button>
+                                <Button className="ml-14  btn-warning text-white " >Connect to wallet</Button>
                             </span>
                         </h3>
                     </Main>
